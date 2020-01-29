@@ -1,7 +1,9 @@
 module Main exposing (Model, Msg, init, update, view)
 
 import Browser
-import Html exposing (..)
+import Html exposing (Html, br, div, input, text)
+import Html.Attributes as Attr exposing (placeholder, value)
+import Html.Events exposing (onInput)
 
 
 
@@ -22,13 +24,17 @@ main =
 
 
 type alias Model =
-    { text : String
+    { name : String
+    , familyName : String
+    , age : Int
     }
 
 
 init : Model
 init =
-    { text = "helloooo"
+    { name = "n/a"
+    , familyName = "n/a"
+    , age = -1
     }
 
 
@@ -37,18 +43,24 @@ init =
 
 
 type Msg
-    = Msg1
-    | Msg2
+    = NameInput String
+    | FamilyNameInput String
+    | AgeInput String
 
 
 update : Msg -> Model -> Model
 update msg model =
     case msg of
-        Msg1 ->
-            model
+        NameInput nameIn ->
+            { model | name = nameIn }
 
-        Msg2 ->
-            model
+        FamilyNameInput fNameIn ->
+            { model | familyName = fNameIn }
+
+        AgeInput ageStr ->
+            { model
+                | age = Maybe.withDefault -1 (String.toInt ageStr)
+            }
 
 
 
@@ -58,4 +70,17 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div []
-        [ text model.text ]
+        [ text ("name: " ++ model.name ++ " " ++ model.familyName)
+        , br [] []
+        , text ("age: " ++ String.fromInt model.age)
+        , div []
+            [ input [ onInput NameInput, placeholder "name" ] []
+            , input [ onInput FamilyNameInput, placeholder "family name" ] []
+            , input
+                [ onInput AgeInput
+                , Attr.type_ "number"
+                , value (String.fromInt model.age)
+                ]
+                []
+            ]
+        ]
