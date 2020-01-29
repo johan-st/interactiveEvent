@@ -1,18 +1,22 @@
 # Interactive Event
 
-## **Pipeline**
-| Feature        |  Done  | task  |   Start    |       Done |
-| :------------- | :----: | :---: | :--------: | ---------: |
-| welcome screen | **1%** |  0/4  | 2020-01-29 | xxxx-xx-xx |
-| Slideshow      | **0%** |  0/6  | xxxx-xx-xx | xxxx-xx-xx |
-| Voting         | **0%** |  0/3  | xxxx-xx-xx | xxxx-xx-xx |
-| Questions      | **0%** |  0/2  | xxxx-xx-xx | xxxx-xx-xx |
-| Images         | **0%** |  0/1  | xxxx-xx-xx | xxxx-xx-xx |
-| Verification   | **0%** |  0/4  | xxxx-xx-xx | xxxx-xx-xx |
-| Admin          | **0%** |  0/6  | xxxx-xx-xx | xxxx-xx-xx |
-| Moderators     | **0%** |  0/6  | xxxx-xx-xx | xxxx-xx-xx |
-| Chat           | **0%** |  0/4  | xxxx-xx-xx | xxxx-xx-xx |
+## **Plan**
 
+
+| Feature            | Done  | task  |   Start    |       Done |
+| :----------------- | :---: | :---: | :--------: | ---------: |
+| -> Template screen |  1%   |  0/1  | 2020-01-29 | xxxx-xx-xx |
+| -> Welcome screen  |  1%   |  0/4  | 2020-01-29 | xxxx-xx-xx |
+| Slideshow          |  0%   |  0/6  | xxxx-xx-xx | xxxx-xx-xx |
+| Voting             |  0%   |  0/3  | xxxx-xx-xx | xxxx-xx-xx |
+| Questions          |  0%   |  0/2  | xxxx-xx-xx | xxxx-xx-xx |
+| Images             |  0%   |  0/1  | xxxx-xx-xx | xxxx-xx-xx |
+| Verification       |  0%   |  0/4  | xxxx-xx-xx | xxxx-xx-xx |
+| Admin              |  0%   |  0/6  | xxxx-xx-xx | xxxx-xx-xx |
+| Moderators         |  0%   |  0/6  | xxxx-xx-xx | xxxx-xx-xx |
+| Chat               |  0%   |  0/4  | xxxx-xx-xx | xxxx-xx-xx |
+**->** (in progress)
+_____
 
 ## Welcome
 - [ ] ..to "X"
