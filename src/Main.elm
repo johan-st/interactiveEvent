@@ -1,12 +1,18 @@
 module Main exposing (Model, Msg, init, update, view)
 
 import Browser
-import Html exposing (Html, br, div, input, text)
-import Html.Attributes as Attr exposing (placeholder, value)
-import Html.Events exposing (onInput)
+import Html exposing (Html)
+-- import Html.Attributes as Attr exposing (placeholder, value)
+import Element.Events exposing (onClick)
 
+{-- ELM-UI --}
+import Element exposing (..)
+import Element.Background as Background
+import Element.Border as Border
+import Element.Font as Font
+import Element.Input as Input
 
-
+--}
 -- MAIN
 
 
@@ -20,21 +26,33 @@ main =
 
 
 
+{-- USER TYPE --}
+type alias User =
+    { session : Session
+    , id : Int
+    , displayName : String
+    }
+
+type Session
+    = Guest 
+    | Valid String 
+--}
+
 -- MODEL
-
-
 type alias Model =
-    { name : String
-    , familyName : String
-    , age : Int
+    { user : User
+    , str : String
     }
 
 
 init : Model
 init =
-    { name = "n/a"
-    , familyName = "n/a"
-    , age = -1
+    { user = 
+        { session = Guest
+        , id = 0
+        , displayName = "guest101"
+        }
+    , str = "hello moto"
     }
 
 
@@ -43,24 +61,19 @@ init =
 
 
 type Msg
-    = NameInput String
-    | FamilyNameInput String
-    | AgeInput String
+    = GotInput String
+    | NoOp
 
 
 update : Msg -> Model -> Model
 update msg model =
     case msg of
-        NameInput nameIn ->
-            { model | name = nameIn }
 
-        FamilyNameInput fNameIn ->
-            { model | familyName = fNameIn }
-
-        AgeInput ageStr ->
-            { model
-                | age = Maybe.withDefault -1 (String.toInt ageStr)
-            }
+        GotInput str  ->
+             model 
+        
+        NoOp -> 
+            model
 
 
 
@@ -69,18 +82,42 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ text ("name: " ++ model.name ++ " " ++ model.familyName)
-        , br [] []
-        , text ("age: " ++ String.fromInt model.age)
-        , div []
-            [ input [ onInput NameInput, placeholder "name" ] []
-            , input [ onInput FamilyNameInput, placeholder "family name" ] []
-            , input
-                [ onInput AgeInput
-                , Attr.type_ "number"
-                , value (String.fromInt model.age)
-                ]
-                []
-            ]
+     Element.layout
+        [ Background.color <| rgb255 33 33 33
+        , Font.color <| rgb255 150 200 200 ] <| 
+        row [ height fill 
+            , width fill
+            , padding 10
+            , spacing 30 ]
+            [useless model]
+        
+
+useless model = 
+    column []
+        [ el 
+            [ padding 10
+            , Border.solid
+            , Border.rounded 5
+            , Border.width 1
+            , onClick GotInput]
+            (text model.str)
+        , myInput model.str
         ]
+        
+    
+
+{--}
+myInput: String -> Element (String -> msg)
+myInput str =
+     Input.username  
+            [ padding 5
+            , Border.width 1
+            , Border.rounded 3
+            , Border.color <| rgb255 200 200 200
+            ] 
+            { label = Input.labelHidden "gone"
+            , onChange = GotInput "str"
+            , placeholder = Just (Input.placeholder [] (text str))
+            , text = "bye"
+    }
+    --}
