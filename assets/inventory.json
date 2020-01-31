@@ -1,0 +1,52 @@
+{
+  "computers": [
+    {
+      "name": "NET006W10",
+      "office": "Solna",
+      "labeled": false,
+      "sent": false
+    },
+    {
+      "name": "NET007W10",
+      "office": "Solna",
+      "labeled": false,
+      "sent": false
+    },
+    {
+      "name": "NET008W10",
+      "office": "Solna",
+      "labeled": false,
+      "sent": false
+    },
+    {
+      "name": "NET009W10",
+      "office": "Solna",
+      "labeled": false,
+      "sent": false
+    },
+    {
+      "name": "NET0010W10",
+      "office": "Solna",
+      "labeled": false,
+      "sent": false
+    },
+    {
+      "name": "NET0011W10",
+      "office": "Solna",
+      "labeled": false,
+      "sent": false
+    },
+    {
+      "name": "NET0012W10",
+      "office": "Solna",
+      "labeled": false,
+      "sent": false
+    },
+    {
+      "name": "NET0013W10",
+      "office": "Solna",
+      "labeled": false,
+      "sent": false
+    }
+  ]
+}

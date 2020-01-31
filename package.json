@@ -15,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/johan-STYL/interactiveEvent/issues"
   },
-  "homepage": "https://github.com/johan-STYL/interactiveEvent#readme"
+  "homepage": "https://github.com/johan-STYL/interactiveEvent#readme",
+  "dependencies": {}
 }
