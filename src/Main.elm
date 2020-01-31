@@ -1,18 +1,22 @@
 module Main exposing (Model, Msg, init, update, view)
 
-import Browser
-import Html exposing (Html)
--- import Html.Attributes as Attr exposing (placeholder, value)
-import Element.Events exposing (onClick)
+{--ELM-UI --}
 
-{-- ELM-UI --}
+import Browser
 import Element exposing (..)
 import Element.Background as Background
 import Element.Border as Border
+import Element.Events exposing (onClick)
 import Element.Font as Font
 import Element.Input as Input
+import Html exposing (Html)
+
+
 
 --}
+
+
+
 -- MAIN
 
 
@@ -26,19 +30,26 @@ main =
 
 
 
-{-- USER TYPE --}
+{--USER TYPE --}
+
+
 type alias User =
     { session : Session
     , id : Int
     , displayName : String
     }
 
+
 type Session
-    = Guest 
-    | Valid String 
+    = Guest
+    | Valid String
 --}
 
+
+
 -- MODEL
+
+
 type alias Model =
     { user : User
     , str : String
@@ -47,12 +58,12 @@ type alias Model =
 
 init : Model
 init =
-    { user = 
+    { user =
         { session = Guest
         , id = 0
-        , displayName = "guest101"
+        , displayName = "[model.user.displayName]"
         }
-    , str = "hello moto"
+    , str = "Hello World"
     }
 
 
@@ -62,18 +73,13 @@ init =
 
 type Msg
     = GotInput String
-    | NoOp
 
 
 update : Msg -> Model -> Model
 update msg model =
     case msg of
-
-        GotInput str  ->
-             model 
-        
-        NoOp -> 
-            model
+        GotInput newStr ->
+            { model | str = newStr }
 
 
 
@@ -82,42 +88,53 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-     Element.layout
+    Element.layout
         [ Background.color <| rgb255 33 33 33
-        , Font.color <| rgb255 150 200 200 ] <| 
-        row [ height fill 
-            , width fill
-            , padding 10
-            , spacing 30 ]
-            [useless model]
-        
-
-useless model = 
-    column []
-        [ el 
-            [ padding 10
-            , Border.solid
-            , Border.rounded 5
-            , Border.width 1
-            , onClick GotInput]
-            (text model.str)
-        , myInput model.str
+        , Font.color <| rgb255 150 200 200
+        , Element.explain Debug.todo
         ]
-        
-    
+    <|
+        column
+            [ centerX
+            , centerY ]
+            [ row
+                [ height fill
+                , width fill
+                , padding 10
+                , spacing 30
+                ]
+                [ strField model ]
+            , row
+                []
+                [ myInput model ]
+            ]
+
+
+strField : Model -> Element msg
+strField model =
+    el [] <| text model.str
+
 
 {--}
-myInput: String -> Element (String -> msg)
-myInput str =
-     Input.username  
-            [ padding 5
-            , Border.width 1
-            , Border.rounded 3
-            , Border.color <| rgb255 200 200 200
-            ] 
-            { label = Input.labelHidden "gone"
-            , onChange = GotInput "str"
-            , placeholder = Just (Input.placeholder [] (text str))
-            , text = "bye"
-    }
-    --}
+myInput : Model -> Element Msg
+myInput model =
+    Input.username
+        [ Input.focusedOnLoad
+        , Border.rounded 25
+        , Border.widthXY 8 3
+        , Font.color <| rgb255 33 33 100
+        ]
+        { onChange = GotInput
+        , text = model.str
+        , label =
+            Input.labelBelow
+                [ centerX
+                , Font.size 14
+                , Font.color <| rgb255 150 150 150
+                ]
+                (text "[model.str]")
+        , placeholder = Nothing
+
+        -- , placeholder = Just (Input.placeholder [ ] (text "[model.str]"))
+        }
+--}
